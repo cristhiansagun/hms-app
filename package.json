@@ -6,13 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
+    "chart.js": "^4.2.1",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "lowdb": "^5.1.0",
     "next": "13.2.3",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "antd": "^5.2.3",
+    "autoprefixer": "^10.4.13",
+    "next-faker": "^0.1.0",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
   }
 }
