@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Space, Table, Tag } from 'antd';
+import { Button, Space, Table, Tag, notification } from 'antd';
 
 const columns = [
     {
@@ -172,10 +172,23 @@ const onTableChange = (pagination, filters, sorter, extra) => {
     // console.log('params', pagination, filters, sorter, extra);
 };
 
+const openNotification = () => {
+    notification.open({
+        message: 'Notification Title',
+        description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        onClick: () => {
+            console.log('Notification Clicked!');
+        },
+    });
+  };
+
 function HealthRecords() {
     return (
         <>
             <h1>Health Records Page</h1>
+            <Button type="primary" onClick={openNotification}>
+                Open the notification box
+            </Button>
             <Table columns={columns} dataSource={data} onChange={onTableChange} />
         </>
     )
