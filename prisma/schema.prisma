@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model persons {
+  id                     Int                 @id @default(autoincrement())
+  firstName              String?             @db.VarChar(255)
+  middleName             String?             @db.VarChar(255)
+  lastName               String?             @db.VarChar(255)
+  address                String?             @db.VarChar(255)
+  age                    Int?
+  personType             persons_personType?
+  emailAddress           String?             @db.VarChar(255)
+  mobileNumber           String?             @db.VarChar(255)
+  personContactDetailsId Int?
+  dateCreated            DateTime            @default(now()) @db.Timestamp(0)
+  createdBy              Int?
+}
+
+model person_temperature_logs {
+  id          Int      @id @default(autoincrement())
+  temperature Decimal? @db.Decimal(10, 2)
+  dateCreated DateTime @default(now()) @db.Timestamp(0)
+  createdBy   Int?
+}
+
+model person_contact_details {
+  id           Int      @id @default(autoincrement())
+  firstName    String?  @db.VarChar(255)
+  middleName   String?  @db.VarChar(255)
+  lastName     String?  @db.VarChar(255)
+  address      String?  @db.VarChar(255)
+  mobileNumber String?  @db.VarChar(255)
+  emailAddress String?  @db.VarChar(255)
+  dateCreated  DateTime @default(now()) @db.Timestamp(0)
+  createdBy    Int?
+}
+
+enum persons_personType {
+  Employee
+  Student
+}

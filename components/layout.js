@@ -1,15 +1,24 @@
+import { React } from 'react'
+import { Layout as LayoutAnt } from 'antd'
+
 import Sidenav from '@/components/sidenav'
 import Footer from '@/components/footer'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 function Layout({ children }) {
+
+    const { Content } = LayoutAnt
+
+    const router = useRouter()
+
     return (
         <>
             <Head>
                 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet' />
             </Head>
             <Sidenav/>
-            <section id="content">
+            <Content id="content">
                 <nav>
                     <i className='bx bx-menu'></i>
                     <a href="#" className="nav-link">Categories</a>
@@ -25,9 +34,11 @@ function Layout({ children }) {
                             </ul>
                         </div>
                     </div>
-                    {children}
+                    <div style={{ marginTop: 20 }}>
+                        {children}
+                    </div>
                 </main>
-            </section>
+            </Content>
             <Footer/>
         </>
     )

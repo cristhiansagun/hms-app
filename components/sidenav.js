@@ -1,8 +1,21 @@
+import { React, useState, useEffect } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import logoImage from '../images/lpu-mainlogo.png'
+import { SIDENAV_MENU } from '@/utilities/constants'
 
 function Sidenav() {
+
+    const [currentRoute, setCurrentRoute] = useState('/')
+
+    const router = useRouter()
+
+    useEffect(() => {
+        setCurrentRoute(router.pathname)
+    }, [router])
+
     return (
         <>
             <section id="sidebar">
@@ -11,30 +24,18 @@ function Sidenav() {
                     <span className="text">Health Monitoring</span>
                 </a>
                 <ul className="side-menu top">
-                    <li className="active">
-                        <Link href="/">
-                            <i className='bx bxs-dashboard' ></i>
-                            <span className="text">Dashboard</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/health-records">
-                            <i className='bx bxs-folder'></i>
-                            <span className="text">Health Records</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/analytics">
-                            <i className='bx bxs-doughnut-chart' ></i>
-                            <span className="text">Analytics</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/user-management">
-                            <i className='bx bxs-doughnut-chart' ></i>
-                            <span className="text">User Management</span>
-                        </Link>
-                    </li>
+                    {
+                        SIDENAV_MENU.map((menu) => {
+                            return (
+                                <li className={currentRoute === menu.link ? 'active' : ''} key={menu.key}>
+                                    <Link href={menu.link}>
+                                        <i className={menu.icon}></i>
+                                        <span className="text">{menu.title}</span>
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
                 <br/>
                 <Image alt="" src={logoImage} width="100" height="auto"/>
