@@ -24,6 +24,7 @@ model persons {
 
 model person_temperature_logs {
   id          Int      @id @default(autoincrement())
+  personId    Int?
   temperature Decimal? @db.Decimal(10, 2)
   dateCreated DateTime @default(now()) @db.Timestamp(0)
   createdBy   Int?
